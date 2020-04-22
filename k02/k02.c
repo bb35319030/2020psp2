@@ -8,7 +8,7 @@ extern double p_stdnorm(double z);
 
 int main(void)
 {
-    double val,Avea=170.8,Vara=5.43,Aveb=169.7,Varb=5.5,max_val,min_val,a,b;
+    double val,Avea=170.8,Vara=5.43,Aveb=169.7,Varb=5.5,likelihoodA,likelihoodB,tmpa,tmpb;
     char fname[FILENAME_MAX];
     char buf[256];
     FILE* fp;
@@ -28,12 +28,12 @@ int main(void)
     while(fgets(buf,sizeof(buf),fp) != NULL){
         sscanf(buf,"%lf",&val);
         
-        a=(val-Avea)/Vara;
-        max_val=p_stdnorm(a)*L1;
-        b=(val-Aveb)/Varb;
-        min_val=p_stdnorm(b)*L2;
-        L1=max_val;
-        L2=min_val;
+        tmpa=(val-Avea)/Vara;
+        likelihoodA=p_stdnorm(tmpa)*L1;
+        tmpb=(val-Aveb)/Varb;
+        likelihoodB=p_stdnorm(tmpb)*L2;
+        L1=likelihoodA;
+        L2=likelihoodB;
 
 
     }
@@ -43,8 +43,8 @@ int main(void)
         exit(EXIT_FAILURE);
     }
 
-    printf("L_A: %f\n",max_val);
-    printf("L_B: %f\n",min_val);
+    printf("L_A: %f\n",likelihoodA);
+    printf("L_B: %f\n",likelihoodB);
 
     return 0;
 }
