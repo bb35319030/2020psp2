@@ -8,7 +8,7 @@ extern double p_stdnorm(double z);
 
 int main(void)
 {
-    double val,Avea=170.8,Vara=5.43,Aveb=169.7,Varb=5.5,likelihoodA,likelihoodB,tmpa,tmpb;
+    double val,Avea=170.8,Vara=5.43,Aveb=169.7,Varb=5.5,likelihoodA=0,likelihoodB=0,tmpa,tmpb;
     char fname[FILENAME_MAX];
     char buf[256];
     FILE* fp;
