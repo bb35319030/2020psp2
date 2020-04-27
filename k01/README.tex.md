@@ -74,6 +74,17 @@ l.48: 平均値Aveを出力
 
 1.60: 分散を求める関数var_onlineを定義
 
+## 入出力結果
+
+```
+input the filename of sample:../sample/heights_male.csv
+the filename of sample: ../sample/heights_male.csv
+sample mean：
+sample variance：
+population mean (estimated)：
+population variance (estimated)：
+```
+
 ## 修正履歴
 
 [comment#1]
