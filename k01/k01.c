@@ -3,8 +3,8 @@
 #include <string.h>
 #include <math.h>
 
-extern double ave_online(double val,double ave,double n);
-extern double var_online(double val,double ave,double square_ave, double n);
+extern double ave_online(double val,double ave,int n);
+extern double var_online(double val,double ave,double square_ave,int n);
 
 
 
@@ -53,10 +53,10 @@ int main(void)
     return 0;
 }
 
-double ave_online(double val,double ave,double n){
+double ave_online(double val,double ave,int n){
     return  (n-1) * ave/n  + val/n ;
     }
 
-extern double var_online(double val,double ave,double square_ave, double n){
+extern double var_online(double val,double ave,double square_ave,int n){
     return (((n-1) *square_ave /n) + val * val/n) - (((n-1)*ave/n)+val/n)*(((n-1)*ave/n)+val/n);
 }
