@@ -3,12 +3,17 @@
 #include <string.h>
 #include <math.h>
 
+#define MU_A (170.8)
+#define MU_B (169.7)
+#define SIGMA_A (5.43)
+#define SIGMA_B (5.5)
+
 extern double p_stdnorm(double z);
 
 
 int main(void)
 {
-    double val,Avea=170.8,Vara=5.43,Aveb=169.7,Varb=5.5,likelihoodA=0,likelihoodB=0,tmpa,tmpb;
+    double val,likelihoodA=0,likelihoodB=0,tmpa,tmpb;
     char fname[FILENAME_MAX];
     char buf[256];
     FILE* fp;
@@ -28,9 +33,9 @@ int main(void)
     while(fgets(buf,sizeof(buf),fp) != NULL){
         sscanf(buf,"%lf",&val);
         
-        tmpa=(val-Avea)/Vara;
+        tmpa=(val-MU_A)/SIGMA_A;
         likelihoodA=p_stdnorm(tmpa)*L1;
-        tmpb=(val-Aveb)/Varb;
+        tmpb=(val-MU_B)/SIGMA_B;
         likelihoodB=p_stdnorm(tmpb)*L2;
         L1=likelihoodA;
         L2=likelihoodB;
