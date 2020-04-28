@@ -100,3 +100,7 @@ population variance (estimated)：
 [comment#2]
 - comment#2に書いた↓が直されていないです．引数をintにしましょう．
    - 関数 `ave_online`，`var_online`の引数の`n`の型ですが，計算式の上で理論的にnは整数しか許されません．なので，doubleではなくintです．int/intのintどうしの割り算が出てきて問題になるなら，それは演算順序を工夫することで解決できます．演算子を囲むペアがintどうしでなければよいので．
+
+[comment#3]
+- comment#1に書きましたが，externは関数本体にはつけません．プロトタイプ宣言にはつけます．
+- Readme.tex.mdに入出力結果をコピペしてください．
