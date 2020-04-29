@@ -57,6 +57,6 @@ double ave_online(double val,double ave,int n){
     return  (n-1) * ave/n  + val/n ;
     }
 
-extern double var_online(double val,double ave,double square_ave,int n){
+double var_online(double val,double ave,double square_ave,int n){
     return (((n-1) *square_ave /n) + val * val/n) - (((n-1)*ave/n)+val/n)*(((n-1)*ave/n)+val/n);
 }

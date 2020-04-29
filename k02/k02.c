@@ -39,7 +39,7 @@ int main(void)
         likelihoodB=p_stdnorm(tmpb)*L2;
         L1=likelihoodA;
         L2=likelihoodB;
-
+        
 
     }
 
