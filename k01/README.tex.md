@@ -104,3 +104,6 @@ population variance (estimated)：28.984813
 [comment#3]
 - comment#1に書きましたが，externは関数本体にはつけません．プロトタイプ宣言にはつけます．
 - Readme.tex.mdに入出力結果をコピペしてください．
+
+[comment#4]
+- 課題1完了．

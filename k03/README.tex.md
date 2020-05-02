@@ -116,3 +116,5 @@ Num of dummy data: 5
 
 ## 修正履歴
 
+[comment #20200430]
+- 課題3完了です．
