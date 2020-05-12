@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#define Height 14
+#define Height 15
 
 typedef struct {
     int id;
@@ -11,10 +11,9 @@ typedef struct {
 } Height_t;
 
 Height_t p[Height];
-
 int main(void)
 {
-    int i,ID;
+    int i,tmp,ID;
     char fname[FILENAME_MAX];
     char buf[256];
     FILE* fp;
@@ -57,17 +56,24 @@ int main(void)
     printf("Which ID's data do you want? :");
     fgets(buf,sizeof(buf),stdin);
     sscanf(buf,"%d",&ID);
+
+    for(i=0;i<14;i++){
+        if(ID==p[i].id){
+            tmp=i;
+        }
+
+    }
   
         printf("---\n");
-        if(ID==p[i].id){
-        printf("ID :%d\n",p[i].id);
-        if(p[i].gender==1){
-        printf("gender :Male\n");
+        if(tmp>0){
+        printf("ID: %d\n",p[tmp].id);
+        if(p[tmp+1].gender==1){
+        printf("gender: Male\n");
         }
         else{
-        printf("gender :Female\n");
+        printf("gender: Female\n");
         }
-        printf("height :%lf\n",p[i].height);
+        printf("height: %lf\n",p[tmp+1].height);
         }
         else{
         printf("No data\n");
