@@ -15,9 +15,10 @@ int main(void)
 {
     int i,tmp,ID;
     char fname[FILENAME_MAX];
+    char filename[FILENAME_MAX];
     char buf[256];
     char buffer[1024];
-    FILE* f=fopen("../sample/heights.csv","r");
+    FILE* f=fopen(filename,"r");
     FILE* fp;
 
     printf("Input the filename of sample height :");
