@@ -46,21 +46,6 @@ l.27: もしfpがNULLだったときは，ファイルを開けなかったの�
 
 
 ## 入出力結果
-45313125と出力したとき
-
-Input the filename of sample height : ../sample/heights.csv
-Input the filename of sample ID : ../sample/IDs.csv
-Which ID's data do you want? : 45313125
----
-No data
-
-45313124と出力したとき
-
-Input the filename of sample height : ../sample/heights.csv
-Input the filename of sample ID : ../sample/IDs.csv
-Which ID's data do you want? : 45313125
----
-No data
 
 例えば，ID 45313125のデータを調べたいとき，
 
@@ -86,3 +71,14 @@ No data
 
 ## 修正履歴
 
+[comment #20200513]
+- コーディングの原則として，「関数の中では数字は使わない」．代わりに`#define`を使う．ということで，
+  - `#define Height 15`としているので，これを使って，関数の中の「15」とか「14」を表現してください．
+- ちなみに，`define`している`Height`は何の値ですか．人数ならば`Height`という名前はそぐわないかもしれません．`N_Heights`とかのほうがいいかも．
+　で，人数ならば15でなく14です．14に`define`して，関数中の15のところを「Height+1」にするのが素直と思います．
+- `heights.csv`の1行目が単なるラベルだから，その1行分を増やして15にしたのかなと思われますが，これは結構問題があります．
+  - `heights.csv`を読むfor文の中で，`sscanf(buf,"%d,%lf",...)`としていますが，このときbufに入っている1行にはアルファベットのラベルが書いてあって，intで読む整数やlfで読む実数が書かれていません．sscanfやscanfは，形式にあったものしか読み取りません．なので，1回目のforループでは，何も読み取られません．代入が起こらないから，おそらく初期値（変な値）のままになります．
+- 1行読み飛ばすには，for文に入る直前に，fgetsだけを置くのが定石と思います．
+- `#define Height 15`の意味は，Heightという変数に15を代入しているのではなく，コンパイル前に`Height`という文字列を`15`という文字列に書き換えるという意味です．なので，構造体の型名の別名定義したものが今`Height_t`ですが，この部分がコンパイル前に`15_t`になってしまいます．問題ですね．なので，defineで宣言する文字列は，関数の中に現れないような文字列にしないといけません．よくやるのが，すべて大文字にする．とか　`__Height__`のように記号ではさむとかです．工夫してください．
+
+  
