@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#define Height 15
+#define N_HEIGHT 14
 
 typedef struct {
     int id;
@@ -10,24 +10,27 @@ typedef struct {
     double height;
 } Height_t;
 
-Height_t p[Height];
+Height_t p[N_HEIGHT];
 int main(void)
 {
     int i,tmp,ID;
     char fname[FILENAME_MAX];
     char buf[256];
+    char buffer[1024];
+    FILE* f=fopen("../sample/heights.csv","r");
     FILE* fp;
 
     printf("Input the filename of sample height :");
-    fgets(fname,sizeof(fname),stdin);
+    
     fname[strlen(fname)-1] = '\0';
-
+    fgets(fname,sizeof(fname),stdin);
     fp = fopen(fname,"r");
     if(fp==NULL){
         fputs("File open error\n",stderr);
         exit(EXIT_FAILURE);
     }
-    for(i=0;i<15;i++){
+    fgets(buffer,1024,f);
+    for(i=0;i<N_HEIGHT;i++){
         sscanf(buf,"%d,%lf",&p[i].gender,&p[i].height);
     }
      if(fclose(fp) == EOF){
@@ -44,7 +47,8 @@ int main(void)
         fputs("File open error\n",stderr);
         exit(EXIT_FAILURE);
     }
-    for(i=0;i<14;i++){
+
+    for(i=0;i<N_HEIGHT;i++){
         sscanf(buf,"%d",&p[i].id);
         
     }
@@ -57,7 +61,7 @@ int main(void)
     fgets(buf,sizeof(buf),stdin);
     sscanf(buf,"%d",&ID);
 
-    for(i=0;i<14;i++){
+    for(i=0;i<N_HEIGHT;i++){
         if(ID==p[i].id){
             tmp=i;
         }
@@ -65,7 +69,7 @@ int main(void)
     }
   
         printf("---\n");
-        if(tmp>=0 && tmp<15){
+        if(N_HEIGHT>tmp && tmp>=0){
         printf("ID: %d\n",p[tmp].id);
         if(p[tmp+1].gender==1){
         printf("gender: Male\n");
