@@ -13,7 +13,7 @@ typedef struct {
 Height_t p[N_HEIGHT];
 int main(void)
 {
-    int i,tmp,ID;
+    int i,tmp=-1,ID;
     char fname[FILENAME_MAX];
     char filename[FILENAME_MAX];
     char buf[256];
@@ -23,8 +23,8 @@ int main(void)
 
     printf("Input the filename of sample height :");
     
-    fname[strlen(fname)-1] = '\0';
     fgets(fname,sizeof(fname),stdin);
+    fname[strlen(fname)-1] = '\0';
     fp = fopen(fname,"r");
     if(fp==NULL){
         fputs("File open error\n",stderr);
@@ -70,15 +70,15 @@ int main(void)
     }
   
         printf("---\n");
-        if(N_HEIGHT>tmp && tmp>=0){
+        if(tmp!=-1){
         printf("ID: %d\n",p[tmp].id);
-        if(p[tmp+1].gender==1){
+        if(p[tmp].gender==1){
         printf("gender: Male\n");
         }
         else{
         printf("gender: Female\n");
         }
-        printf("height: %lf\n",p[tmp+1].height);
+        printf("height: %lf\n",p[tmp].height);
         }
         else{
         printf("No data\n");
