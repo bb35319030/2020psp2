@@ -81,4 +81,38 @@ No data
 - 1行読み飛ばすには，for文に入る直前に，fgetsだけを置くのが定石と思います．
 - `#define Height 15`の意味は，Heightという変数に15を代入しているのではなく，コンパイル前に`Height`という文字列を`15`という文字列に書き換えるという意味です．なので，構造体の型名の別名定義したものが今`Height_t`ですが，この部分がコンパイル前に`15_t`になってしまいます．問題ですね．なので，defineで宣言する文字列は，関数の中に現れないような文字列にしないといけません．よくやるのが，すべて大文字にする．とか　`__Height__`のように記号ではさむとかです．工夫してください．
 
-  
+[comment #20200521]
+- 理解がこんがらがってしまったようですね．
+- ファイル読み込み，1行目を読み飛ばす，という処理の流れは，
+  ```
+  /* stdin（標準入力：キーボード）の長さsizeof(fname)だけをgetしてfnameに保存 */
+  fgets(fname,sizeof(fname),stdin);
+  /* ファイル名がfnameであるファイルのメモリ上のアドレスをfpに保存 */
+  /* アドレスfpから始まるメモリにはファイルの中身がある */
+  fp = fopen(fname,"r");
+  /* fpのファイルの中身から1行分を何かに読み取る */
+  /* （上のfgetsと使い方を比べてみてください．）*/
+  /* lineという文字列に1行分保存する処理です */
+  fgets(buf,sizeof(buf),fp);
+  i=0;
+  /* fgetsしてbufに1行読み込めたらばループ */
+  while(fgets(buf,sizeof(buf),fp)){
+    /* bufからscanf */
+    sscanf(buf,"%d,%lf",&gender,&height);
+    :
+    i++:
+  }
+  ```
+  もしwhileでなくforならば `i=0;`からの数行が
+  ```
+  /* i<N_HEIGHTならばループ */
+  for(i=0;i<N_HEIGHT,i++){
+    /* fgetsしてbufに1行読み込む */
+    fgets(buf,sizeof(buf),fp);
+    sscanf(buf,"%d,%lf",&gender,&height);
+    :
+  }
+  ```
+  となります．
+  - sscanf(buf,"%d,%lf",...)をするために，bufに1行読み取っていないといけないですよね．
+- 
