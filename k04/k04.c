@@ -49,7 +49,7 @@ int main(void)
         fputs("File open error\n",stderr);
         exit(EXIT_FAILURE);
     }
-
+    i=0;
      while(fgets(buf,sizeof(buf),fp)){
         sscanf(buf,"%d",&p[i].id);
         i++;
@@ -64,6 +64,7 @@ int main(void)
     fgets(buf,sizeof(buf),stdin);
     sscanf(buf,"%d",&ID);
 
+    
     for(i=0;i<N_HEIGHT;i++){
         if(ID==p[i].id){
             tmp=i;

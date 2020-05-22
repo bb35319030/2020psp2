@@ -33,7 +33,7 @@ l.30: もしfpがNULLだったときは，ファイルを開けなかったの�
 
 1.65:bufをIDとして読み取る
 
-1.67:IDがp[i].idと一致するときのiをtmpに代入
+1.68:IDがp[i].idと一致するときのiをtmpに代入
 
 1.75:tmpが-1でないならIDを出力
 
@@ -71,6 +71,21 @@ Which ID's data do you want? : 45313124
 No data
 ```
 
+ID 45313125のデータを調べたとき、
+Input the filename of sample height :../sample/heights.csv
+Input the filename of sample ID :../sample/IDs.csv
+Which ID's data do you want? :45313125
+---
+ID: 45313125
+gender: Female
+height: 152.400000
+
+ID 45313124のデータを調べたとき、
+Input the filename of sample height :../sample/heights.csv
+Input the filename of sample ID :../sample/IDs.csv
+Which ID's data do you want? :45313124
+---
+No data
 ## 修正履歴
 
 [comment #20200513]
