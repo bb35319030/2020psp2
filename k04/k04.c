@@ -14,12 +14,9 @@ Height_t p[N_HEIGHT];
 int main(void)
 {
     int i,tmp=-1,ID;
-    char filename[FILENAME_MAX];
     char fname[FILENAME_MAX];
     char buf[256];
-    char buffer[1024];
     FILE* fp;
-    FILE* f;
 
 
     printf("Input the filename of sample height :");
@@ -31,11 +28,13 @@ int main(void)
         fputs("File open error\n",stderr);
         exit(EXIT_FAILURE);
     }
-    f = fopen(filename,"r");
-    fgets(buffer,sizeof(filename),f);
-    for(i=0;i<N_HEIGHT;i++){
+    
+        fgets(buf,sizeof(buf),fp);
+        i=0;
+        while(fgets(buf,sizeof(buf),fp)){
         sscanf(buf,"%d,%lf",&p[i].gender,&p[i].height);
-    }
+        i++;
+        }
      if(fclose(fp) == EOF){
         fputs("file close error\n",stderr);
         exit(EXIT_FAILURE);
@@ -51,10 +50,11 @@ int main(void)
         exit(EXIT_FAILURE);
     }
 
-    for(i=0;i<N_HEIGHT;i++){
+     while(fgets(buf,sizeof(buf),fp)){
         sscanf(buf,"%d",&p[i].id);
+        i++;
+        }
         
-    }
      if(fclose(fp) == EOF){
         fputs("file close error\n",stderr);
         exit(EXIT_FAILURE);
