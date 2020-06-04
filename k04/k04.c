@@ -13,7 +13,7 @@ typedef struct {
 Height_t p[N_HEIGHT];
 int main(void)
 {
-    int i,tmp=-1,ID;
+    int i,IDnum=-1,ID;
     char fname[FILENAME_MAX];
     char buf[256];
     FILE* fp;
@@ -67,21 +67,21 @@ int main(void)
     
     for(i=0;i<N_HEIGHT;i++){
         if(ID==p[i].id){
-            tmp=i;
+            IDnum=i;
         }
 
     }
   
         printf("---\n");
-        if(tmp!=-1){
-        printf("ID: %d\n",p[tmp].id);
-        if(p[tmp].gender==1){
+        if(IDnum!=-1){
+        printf("ID: %d\n",p[IDnum].id);
+        if(p[IDnum].gender==1){
         printf("gender: Male\n");
         }
         else{
         printf("gender: Female\n");
         }
-        printf("height: %lf\n",p[tmp].height);
+        printf("height: %4.1lf\n",p[IDnum].height);
         }
         else{
         printf("No data\n");
